@@ -1,12 +1,122 @@
-*.class
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+public class Invoice 
+{
+private String partNumber;
+private String partDescription;
+private int Quantity;
+private double Price;
+public Invoice(String PNumber,String PDescription, int Q, double P)
+{
+	partNumber=PNumber;
+	partDescription=PDescription;
+	if (Q>=0.0)
+	{
+		Quantity=Q;
+	}
+	else
+	{
+		Quantity=0;
+	}
+	if (P>=0.0)
+	{
+		Price=P;
+	}
+	else
+	{
+		Price=0.0;
+	}
+}
+	
+public void setpartNumber(String PNumber)
+{
+	partNumber=PNumber;
+}
+public String getpartNumber()
+{
+	return partNumber;
+}
+public void setpartDescription(String PDescription)
+{
+	partDescription=PDescription;
+}
+public String getpartDescription()
+{
+	return partDescription;
+}
+public void setQuantity(int Q)
+{
+	if (Q>=0)
+	{
+		Quantity=Q;
+	}
+	else
+	{
+		Quantity=0;
+	}
+	
+}
+public int getQuantity()
+{
+	return Quantity;
+}
+public void setPrice(double P)
+{
+	if (P>=0.0)
+	{
+		Price=P;
+	}
+	else
+	{
+		Price=0.0;
+	}
+	
+}
+public double getPrice()
+{
+	return Price;
+}
 
-# Package Files #
-*.jar
-*.war
-*.ear
+public double getInvoiceAmount()
+{
+	double amount= Quantity*Price;
+	return amount;
+}
+}
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+//Test Program
+
+import java.util.Scanner;
+public class InvoiceTest 
+{
+public static void main (String args[])
+{
+	String PN=null;
+	String PD=null;
+	int QN=0;
+	double PC=0.0;
+	Invoice invoice1=new Invoice(PN,PD,QN,PC);
+	Scanner in=new Scanner(System.in);
+	System.out.printf("Enter Part Number of Invoice 1:");
+	PN=in.nextLine();
+	invoice1.setpartNumber(PN);
+	System.out.print("Enter  Part Description of Invoice 1:");
+	PD=in.nextLine();
+	invoice1.setpartDescription(PD);	
+	System.out.print("Enter Quantity:");
+	QN=in.nextInt();
+	invoice1.setQuantity(QN);
+	System.out.print("Enter the Price per item:");
+	PC=in.nextDouble();
+	invoice1.setPrice(PC);
+	System.out.printf("Invoice 1 Part Number is : %s\n",
+			invoice1.getpartNumber());
+	System.out.printf("Invoice 1 Part Description is : %s\n",
+			invoice1.getpartDescription());
+	System.out.printf("Invoice 1 Quantity is : %s\n",
+			invoice1.getQuantity());
+	System.out.printf("Invoice 1 Price per item is : $%.2f\n",
+			invoice1.getPrice());
+	double Pricee=invoice1.getQuantity()*invoice1.getPrice();
+	System.out.printf("Invoice 1 Total Amount is : $%.2f\n", (Pricee));
+}
+}
